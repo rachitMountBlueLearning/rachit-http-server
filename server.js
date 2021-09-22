@@ -1,9 +1,8 @@
 // Import modules
-const EXPRESS = require('express');
+const HTTP = require('http');
 const { v4: UUID4 } = require('uuid');
 const FS = require('fs').promises;
 
-const APP = EXPRESS();
 
 const SERVER = HTTP.createServer((request, response) => {
     const STATUS_MATCH = request.url.match(/^\/status\/\d{3}$/g) ?

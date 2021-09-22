@@ -1,8 +1,9 @@
 // Import modules
-const HTTP = require('http');
+const EXPRESS = require('express');
 const { v4: UUID4 } = require('uuid');
 const FS = require('fs').promises;
 
+const APP = EXPRESS();
 
 const SERVER = HTTP.createServer((request, response) => {
     const STATUS_MATCH = request.url.match(/^\/status\/\d{3}$/g) ?
@@ -13,7 +14,8 @@ const SERVER = HTTP.createServer((request, response) => {
         null;
 
     switch(request.url) {
-        case '/html' || '/':
+        case '/html':
+        case '/':
             FS.readFile('./data/index.html', 'utf8')
                 .then((sentBack) => {
                     response.writeHead(200, { 'Content-Type': 'text/html' });
